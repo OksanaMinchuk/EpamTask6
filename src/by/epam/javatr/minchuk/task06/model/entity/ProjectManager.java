@@ -14,7 +14,7 @@ public class ProjectManager extends Employee {
     public ProjectManager() {
     }
 
-    public ProjectManager(int id, String name, String surname, int salaryPerHour,  String username, String project) {
+    public ProjectManager(String id, String name, String surname, int salaryPerHour,  String username, String project) {
         super(id, name, surname, salaryPerHour, username);
         if (project != "") {
             this.project = project;

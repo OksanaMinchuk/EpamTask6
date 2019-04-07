@@ -15,7 +15,7 @@ public class Employee {
         DEVELOPER, TESTER, PROJECTMANAGER
     }
 
-    private int id;
+    private String id;
     private String name;
     private String surname;
     private double salaryPerHour;
@@ -24,7 +24,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String name, String surname, int salaryPerHour, String username) {
+    public Employee(String id, String name, String surname, int salaryPerHour, String username) {
         if (name != ""  && surname != "" && salaryPerHour > 0) {
             this.id = id;
             this.name = name;
@@ -42,11 +42,11 @@ public class Employee {
         this.username = employee.username;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -74,7 +74,7 @@ public class Employee {
         this.salaryPerHour = salaryPerHour;
     }
 
-    public String getUsernamel() {
+    public String getUsername() {
         return username;
     }
 
@@ -87,8 +87,8 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id &&
-                Double.compare(employee.salaryPerHour, salaryPerHour) == 0 &&
+        return Double.compare(employee.salaryPerHour, salaryPerHour) == 0 &&
+                id.equals(employee.id) &&
                 name.equals(employee.name) &&
                 surname.equals(employee.surname) &&
                 username.equals(employee.username);
@@ -101,11 +101,11 @@ public class Employee {
 
     @Override
     public String toString() {
-        return  "id=" + id +
+        return  " id= " + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", salaryPerHour=" + salaryPerHour +
                 ", username='" + username + '\'' +
-                '}';
+                ", ";
     }
 }

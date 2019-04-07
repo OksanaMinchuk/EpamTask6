@@ -4,16 +4,16 @@
          xmlns:tns="http://www.example.com/itcompany"
          targetNamespace="http://www.example.com/itcompany">
 
-    <element name="emplyee" type="tns:Employee" abstract="true"></element>
-    <element name="engineer" type="tns:Engineer" substitutionGroup="tns:emplyee"></element>
+    <element name="employee" type="tns:Employee" abstract="true"></element>
+    <element name="engineer" type="tns:Engineer" substitutionGroup="tns:employee"></element>
     <element name="developer" type="tns:Developer" substitutionGroup="tns:engineer"></element>
     <element name="tester" type="tns:Tester" substitutionGroup="tns:engineer"></element>
-    <element name="projectmanager" type="tns:ProjectManager" substitutionGroup="tns:emplyee"></element>
+    <element name="projectmanager" type="tns:ProjectManager" substitutionGroup="tns:employee"></element>
 
     <element name="itcompany">
         <complexType>
             <sequence>
-                <element ref="tns:emplyee" minOccurs="1" maxOccurs="unbounded" />
+                <element ref="tns:employee" minOccurs="1" maxOccurs="unbounded" />
             </sequence>
         </complexType>
     </element>

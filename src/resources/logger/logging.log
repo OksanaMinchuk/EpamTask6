@@ -1,5 +1,17 @@
-2019-04-07 12:47:14 TRACE root:13 - start program 
-2019-04-07 12:47:14 ERROR root:28 - 32 : 45cvc-maxExclusive-valid: Value '300.0' is not facet-valid with respect to maxExclusive '1.0E2' for type 'SalaryPerHour'.
-2019-04-07 12:47:14 ERROR root:28 - 32 : 45cvc-type.3.1.3: The value '300.0' of element 'salaryPerHour' is not valid.
-2019-04-07 12:47:14 INFO  root:47 - src/resources/input/itcompany.xml is valid.
-2019-04-07 12:47:14 TRACE root:16 - finish program 
+2019-04-07 23:33:45 INFO  root:47 - src/resources/input/itcompany.xml is valid.
+2019-04-07 23:33:45 INFO  root:34 - DOM Parsing
+2019-04-07 23:33:45 INFO  root:39 - 	ITCompany
+Developer { id= id1, name='John', surname='Conor', salaryPerHour=50.0, username='conor', level=MIDDLE, developerType=BACK_END, skill='Java'}
+Developer { id= id2, name='Donald', surname='Freeman', salaryPerHour=45.5, username='freeman', level=MIDDLE, developerType=BACK_END, skill='C++'}
+Developer { id= id3, name='Jack', surname='Gilbert', salaryPerHour=54.5, username='gilbert', level=SENIOR, developerType=FRONT_END, skill='HTML'}
+Tester { id= id4, name='Alex', surname='Miller', salaryPerHour=30.0, username='miller', level=MIDDLE, testerType=MANUAL}
+Tester { id= id5, name='Tom', surname='Gibbs', salaryPerHour=24.7, username='gibbs', level=JUNIOR, testerType=AUTOMATION}
+ProjectManager { id= id6, name='Scott', surname='Johnson', salaryPerHour=60.0, username='johnson', project='Online-Store'}
+
+2019-04-07 23:33:45 INFO  root:43 - STAX Parsing
+2019-04-07 23:33:45 ERROR root:56 - File src/resources/input/itcompany.xml not found! Unknown element in tag ITCompany
+2019-04-07 23:33:45 INFO  root:48 - 	ITCompany
+Developer { id= id1, name='John', surname='Conor', salaryPerHour=50.0, username='conor', level=MIDDLE, developerType=BACK_END, skill='Java'}
+Developer { id= id2, name='Donald', surname='Freeman', salaryPerHour=45.5, username='freeman', level=MIDDLE, developerType=BACK_END, skill='C++'}
+Developer { id= id3, name='Jack', surname='Gilbert', salaryPerHour=54.5, username='gilbert', level=SENIOR, developerType=FRONT_END, skill='HTML'}
+

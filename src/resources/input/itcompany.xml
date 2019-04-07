@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<itcompany xmlns="http://www.example.com/itcompany">
+<itcompany xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.example.com/itcompany"
+            xsi:schemaLocation="http://www.example.com/itcompany itcompanySchema.xsd">
 
     <developer id="id1" username="conor">
         <name>John</name>
@@ -11,7 +13,7 @@
         <skill>Java</skill>
     </developer>
 
-    <developer id="id2" username="kreeman">
+    <developer id="id2" username="freeman">
         <name>Donald</name>
         <surname>Freeman</surname>
         <salaryPerHour>45.5</salaryPerHour>
@@ -20,7 +22,16 @@
         <skill>C++</skill>
     </developer>
 
-    <tester id="id3" username="miller">
+    <developer id="id3" username="gilbert">
+        <name>Jack</name>
+        <surname>Gilbert</surname>
+        <salaryPerHour>54.5</salaryPerHour>
+        <level>SENIOR</level>
+        <developerType>FRONT_END</developerType>
+        <skill>HTML</skill>
+    </developer>
+
+    <tester id="id4" username="miller">
         <name>Alex</name>
         <surname>Miller</surname>
         <salaryPerHour>30.0</salaryPerHour>
@@ -28,15 +39,15 @@
         <testerType>MANUAL</testerType>
     </tester>
 
-    <tester id="id3" username="miller">
-        <name>Alex</name>
-        <surname>Miller</surname>
-        <salaryPerHour>30.0</salaryPerHour>
-        <level>MIDDLE</level>
-        <testerType>MANUAL</testerType>
+    <tester id="id5" username="gibbs">
+        <name>Tom</name>
+        <surname>Gibbs</surname>
+        <salaryPerHour>24.7</salaryPerHour>
+        <level>JUNIOR</level>
+        <testerType>AUTOMATION</testerType>
     </tester>
 
-    <projectmanager id="id4" username="johnson">
+    <projectmanager id="id6" username="johnson">
         <name>Scott</name>
         <surname>Johnson</surname>
         <salaryPerHour>60.0</salaryPerHour>

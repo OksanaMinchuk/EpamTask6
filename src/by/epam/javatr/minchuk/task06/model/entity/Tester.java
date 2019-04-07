@@ -18,7 +18,7 @@ public class Tester extends Engineer {
     public Tester() {
     }
 
-    public Tester(int id, String name, String surname, int salaryPerHour, String username,
+    public Tester(String id, String name, String surname, int salaryPerHour, String username,
                   EngineerLevelType level, TesterType testerType) {
         super(id, name, surname, salaryPerHour, username, level);
         this.testerType = testerType;

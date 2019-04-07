@@ -18,7 +18,7 @@ public class Engineer extends Employee {
     public Engineer() {
     }
 
-    public Engineer(int id, String name, String surname, int salaryPerHour, String username,  EngineerLevelType level) {
+    public Engineer(String id, String name, String surname, int salaryPerHour, String username,  EngineerLevelType level) {
         super(id, name, surname, salaryPerHour, username);
         this.level = level;
     }
