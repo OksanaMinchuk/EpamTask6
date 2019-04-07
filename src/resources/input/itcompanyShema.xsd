@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema  elementFormDefault="qualified"
+         xmlns="http://www.w3.org/2001/XMLSchema"
+         xmlns:tns="http://www.example.com/itcompany"
+         targetNamespace="http://www.example.com/itcompany">
+
+    <element name="emplyee" type="tns:Employee" abstract="true"></element>
+    <element name="engineer" type="tns:Engineer" substitutionGroup="tns:emplyee"></element>
+    <element name="developer" type="tns:Developer" substitutionGroup="tns:engineer"></element>
+    <element name="tester" type="tns:Tester" substitutionGroup="tns:engineer"></element>
+    <element name="projectmanager" type="tns:ProjectManager" substitutionGroup="tns:emplyee"></element>
+
+    <element name="itcompany">
+        <complexType>
+            <sequence>
+                <element ref="tns:emplyee" minOccurs="1" maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Employee">
+        <sequence>
+            <element name="name" type="string" />
+            <element name="surname" type="string" />
+            <element name="salaryPerHour" type="tns:SalaryPerHour" />
+        </sequence>
+        <attribute name="id" type="ID" use="required" />
+        <attribute name="username" type="tns:UserName" use="required" />
+    </complexType>
+
+    <complexType name="Engineer">
+        <complexContent>
+            <extension base="tns:Employee">
+                <sequence>
+                    <element name="level" type="tns:EngineerLevelType" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Developer">
+        <complexContent>
+            <extension base="tns:Engineer">
+                <sequence>
+                    <element name="developerType" type="tns:DeveloperType" />
+                    <element name="skill" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Tester">
+        <complexContent>
+            <extension base="tns:Engineer">
+                <sequence>
+                    <element name="testerType" type="tns:TesterType" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="ProjectManager">
+        <complexContent>
+            <extension base="tns:Employee">
+                <sequence>
+                    <element name="project" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="EngineerLevelType">
+        <restriction base="string">
+            <enumeration value="JUNIOR"></enumeration>
+            <enumeration value="MIDDLE"></enumeration>
+            <enumeration value="SENIOR"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="DeveloperType">
+        <restriction base="string">
+            <enumeration value="FRONT_END"></enumeration>
+            <enumeration value="BACK_END"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="TesterType">
+        <restriction base="string">
+            <enumeration value="AUTOMATION"></enumeration>
+            <enumeration value="MANUAL"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="SalaryPerHour">
+        <restriction base="double">
+            <minInclusive value="5.0" />
+            <maxExclusive value="100.0" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="UserName">
+        <restriction base="string">
+            <pattern value="[a-zA-Z0-9]{3,10}"/>
+        </restriction>
+    </simpleType>
+
+</schema>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<itcompany xmlns="http://www.example.com/itcompany">
+
+    <developer id="id1" username="conor">
+        <name>John</name>
+        <surname>Conor</surname>
+        <salaryPerHour>50.0</salaryPerHour>
+        <level>MIDDLE</level>
+        <developerType>BACK_END</developerType>
+        <skill>Java</skill>
+    </developer>
+
+    <developer id="id2" username="kreeman">
+        <name>Donald</name>
+        <surname>Freeman</surname>
+        <salaryPerHour>45.5</salaryPerHour>
+        <level>MIDDLE</level>
+        <developerType>BACK_END</developerType>
+        <skill>C++</skill>
+    </developer>
+
+    <tester id="id3" username="miller">
+        <name>Alex</name>
+        <surname>Miller</surname>
+        <salaryPerHour>30.0</salaryPerHour>
+        <level>MIDDLE</level>
+        <testerType>MANUAL</testerType>
+    </tester>
+
+    <tester id="id3" username="miller">
+        <name>Alex</name>
+        <surname>Miller</surname>
+        <salaryPerHour>30.0</salaryPerHour>
+        <level>MIDDLE</level>
+        <testerType>MANUAL</testerType>
+    </tester>
+
+    <projectmanager id="id4" username="johnson">
+        <name>Scott</name>
+        <surname>Johnson</surname>
+        <salaryPerHour>60.0</salaryPerHour>
+        <project>Online-Store</project>
+    </projectmanager>
+
+</itcompany>
