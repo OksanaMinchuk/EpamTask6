@@ -28,7 +28,7 @@ public class MainController {
     public static void main(String[] args) {
         ITCompany itCompany;
 
-        //Check schema 
+        //Check schema
         ValidatorSAXXSD.validateScheme();
 
         //DOM Parsing
@@ -51,8 +51,8 @@ public class MainController {
         LOGGER.info("SAX Parsing");
         AbstractITCompanyBuilder builderSAX = new ITCompanyFactoryBuilder().
                 createITCompanyBuilder(ITCompanyFactoryBuilder.TypeParser.SAX.toString());
-        builderSTAX.createITCompany(XML_FILE_PATH);
-        itCompany = builderSTAX.getItCompany();
+        builderSAX.createITCompany(XML_FILE_PATH);
+        itCompany = builderSAX.getItCompany();
         LOGGER.info(itCompany);
 
 
