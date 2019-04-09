@@ -23,8 +23,10 @@ import java.io.IOException;
 public class ValidatorSAXXSD {
 
     private static final Logger LOGGER;
-    private static final String XML_FILE_PATH = "src" + File.separator + "resources" + File.separator + "input"+ File.separator + "itcompany.xml";
-    private static final String XSD_FILE_PATH = "src" + File.separator + "resources" + File.separator + "input"+ File.separator + "itcompanySchema.xsd";
+    private static final String XML_FILE_PATH = "src" + File.separator + "resources" + File.separator + "input"
+            + File.separator + "itcompany.xml";
+    private static final String XSD_FILE_PATH = "src" + File.separator + "resources" + File.separator + "input"
+            + File.separator + "itcompanySchema.xsd";
     private static final String LANGUAGE = XMLConstants.W3C_XML_SCHEMA_NS_URI;
     private static final String LOGNAME = "validatorLog.log";
 

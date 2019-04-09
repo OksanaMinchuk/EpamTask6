@@ -16,8 +16,8 @@ public class XMLParserErrorHandler extends DefaultHandler {
         LOGGER = Logger.getRootLogger();
     }
 
-    public XMLParserErrorHandler(String logFileName) throws IOException {
-        LOGGER.addAppender(new FileAppender(new SimpleLayout(), logFileName));
+    public XMLParserErrorHandler(String filename) throws IOException {
+        LOGGER.addAppender(new FileAppender(new SimpleLayout(), filename));
     }
 
     public void warning(SAXParseException e) {

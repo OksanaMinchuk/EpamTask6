@@ -33,8 +33,9 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
 
     @Override
     public void createITCompany(String filename) {
+
         FileInputStream fileInputStream = null;
-        XMLStreamReader reader = null;
+        XMLStreamReader reader;
         String name;
         try {
             fileInputStream = new FileInputStream(new File(filename));
@@ -42,25 +43,27 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
             //StAX parsing
             while (reader.hasNext()) {
                 int type = reader.next();
+
                 if(type == XMLStreamConstants.START_ELEMENT) {
                     name = reader.getLocalName();
+
                     if (employeeTypes.contains(ITCompanyEnum.valueOf(name.toUpperCase()))) {
                         Employee employee = buildEmployee(reader);
                         itCompany.addEmployee(employee);
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            LOGGER.error("StAX parsing error!" + e.getMessage());
         } catch (XMLStreamException e) {
+            LOGGER.error("StAX parsing error!" + e.getMessage());
+        } catch (FileNotFoundException e) {
             LOGGER.error("File " + filename + " not found! " + e.getMessage());
         } finally {
-            if (fileInputStream != null) {
-                try {
+            try {
+                if (fileInputStream != null) {
                     fileInputStream.close();
-                } catch (IOException e) {
-                    LOGGER.error("Impossible close file! "+ filename + e);
                 }
+            } catch (IOException e) {
+                LOGGER.error("Impossible close file! "+ filename + e);
             }
         }
     }
@@ -68,11 +71,13 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
     private Employee buildEmployee(XMLStreamReader reader) throws XMLStreamException{
 
         Employee employee = null;
+
         if (reader.getLocalName() == ITCompanyEnum.DEVELOPER.getValue()) {
             employee = new Developer();
-        } else
-            if (reader.getLocalName() == ITCompanyEnum.TESTER.getValue()){
+
+        } else if (reader.getLocalName() == ITCompanyEnum.TESTER.getValue()){
             employee = new Tester();
+
         } else if (reader.getLocalName() == ITCompanyEnum.PROJECTMANAGER.getValue()) {
             employee = new ProjectManager();
         }
@@ -82,10 +87,13 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
 
         String name;
         while (reader.hasNext()) {
+
            int type = reader.next();
+
            switch (type) {
                case XMLStreamConstants.START_ELEMENT:
                    name = reader.getLocalName();
+
                    switch (ITCompanyEnum.valueOf(name.toUpperCase())) {
                        case NAME:
                            employee.setName(getXMLText(reader));
@@ -108,8 +116,7 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
                                } else if (name == ITCompanyEnum.SKILL.getValue()) {
                                    developer.setSkill(getXMLText(reader));
                                }
-
-                           } else if (employee instanceof  Tester) {
+                           } else if (employee instanceof Tester) {
                                Tester tester = (Tester) employee;
                                if (name == ITCompanyEnum.TESTERTYPE.getValue()) {
                                    tester.setTesterType(Tester.TesterType.valueOf(getXMLText(reader)));
@@ -125,13 +132,13 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
                break;
                case XMLStreamConstants.END_ELEMENT:
                    name = reader.getLocalName();
-                   if (ITCompanyEnum.valueOf(name.toUpperCase()) == ITCompanyEnum.DEVELOPER) {
+                   if (employeeTypes.contains(ITCompanyEnum.valueOf(name.toUpperCase()))) {
                        return employee;
                    }
                break;
            }
         }
-        throw  new XMLStreamException("Unknown element in tag ITCompany");
+        throw new XMLStreamException("Unknown element in tag ITCompany");
     }
 
     private String getXMLText(XMLStreamReader reader) throws XMLStreamException {

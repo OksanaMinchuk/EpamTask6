@@ -5,6 +5,7 @@ import by.epam.javatr.minchuk.task06.model.builder.DOM.ITCompanyDOMBuilder;
 import by.epam.javatr.minchuk.task06.model.builder.ITCompanyFactoryBuilder;
 import by.epam.javatr.minchuk.task06.model.entity.ITCompany;
 import by.epam.javatr.minchuk.task06.util.ValidatorSAXXSD;
+import by.epam.javatr.minchuk.task06.util.ValidatorXSD;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -27,7 +28,7 @@ public class MainController {
     public static void main(String[] args) {
         ITCompany itCompany;
 
-        //Check schema
+        //Check schema 
         ValidatorSAXXSD.validateScheme();
 
         //DOM Parsing
@@ -38,7 +39,6 @@ public class MainController {
         itCompany = builderDOM.getItCompany();
         LOGGER.info(itCompany);
 
-
         //STAX Parsing
         LOGGER.info("STAX Parsing");
         AbstractITCompanyBuilder builderSTAX = new ITCompanyFactoryBuilder().
@@ -46,6 +46,15 @@ public class MainController {
         builderSTAX.createITCompany(XML_FILE_PATH);
         itCompany = builderSTAX.getItCompany();
         LOGGER.info(itCompany);
+
+        //SAX Parsing
+        LOGGER.info("SAX Parsing");
+        AbstractITCompanyBuilder builderSAX = new ITCompanyFactoryBuilder().
+                createITCompanyBuilder(ITCompanyFactoryBuilder.TypeParser.SAX.toString());
+        builderSTAX.createITCompany(XML_FILE_PATH);
+        itCompany = builderSTAX.getItCompany();
+        LOGGER.info(itCompany);
+
 
 
 
