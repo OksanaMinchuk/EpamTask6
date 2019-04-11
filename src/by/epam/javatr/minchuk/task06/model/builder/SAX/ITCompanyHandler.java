@@ -19,110 +19,96 @@ public class ITCompanyHandler extends DefaultHandler {
     private ITCompany itCompany;
     private Employee currentEmployee;
     private ITCompanyEnum currentEnum;
-    private EnumSet<ITCompanyEnum> withText;
+    private EnumSet<ITCompanyEnum> types;
+    private EnumSet<ITCompanyEnum> fields;
 
     public ITCompanyHandler() {
         itCompany = new ITCompany();
-        withText = EnumSet.range(ITCompanyEnum.NAME, ITCompanyEnum.PROJECT);
+        types = EnumSet.range(ITCompanyEnum.DEVELOPER, ITCompanyEnum.PROJECTMANAGER);
+        fields = EnumSet.range(ITCompanyEnum.NAME, ITCompanyEnum.PROJECT);
     }
 
+    public ITCompany getItCompany() {
+        return itCompany;
+    }
+
+    @Override
     public void startElement(String uri, String localName, String qName, Attributes attrs) {
 
-        ITCompanyEnum temp = ITCompanyEnum.valueOf(localName.toUpperCase());
+        if (ITCompanyEnum.DEVELOPER.getValue().equalsIgnoreCase(localName)) {
+            currentEmployee = new Developer();
 
-        switch (temp) {
-            case DEVELOPER:
-                currentEmployee = new Developer();
-                break;
-            case TESTER:
-                currentEmployee = new Tester();
-                break;
-            case PROJECTMANAGER:
-                currentEmployee = new ProjectManager();
-                break;
-            default:
-                if (withText.contains(temp)) {
+        } else if (ITCompanyEnum.TESTER.getValue().equalsIgnoreCase(localName)) {
+            currentEmployee = new Tester();
+
+        } else if (ITCompanyEnum.PROJECTMANAGER.getValue().equalsIgnoreCase(localName)) {
+            currentEmployee = new ProjectManager();
+
+        } else {
+            ITCompanyEnum temp = ITCompanyEnum.valueOf(localName.toUpperCase());
+            if (fields.contains(temp)) {
                 currentEnum = temp;
             }
         }
-
-        currentEmployee.setId(attrs.getValue(0));
-
         if (attrs.getLength() == 2) {
+            currentEmployee.setId(attrs.getValue(0));
             currentEmployee.setUsername(attrs.getValue(1));
         }
     }
 
+    @Override
     public void endElement(String uri, String localName, String qName) {
-
-        ITCompanyEnum temp = ITCompanyEnum.valueOf(localName.toUpperCase());
-        switch (temp) {
-            case DEVELOPER:
-            case TESTER:
-            case PROJECTMANAGER:
-                if (currentEmployee != null) {
-                    itCompany.addEmployee(currentEmployee);
-                }
-                break;
-            default:
-                if (withText.contains(temp)) {
-                    currentEnum = null;
-                }
-                break;
-        }
+       if (types.contains(ITCompanyEnum.valueOf(localName.toUpperCase()))) {
+           itCompany.addEmployee(currentEmployee);
+       }
     }
 
+    @Override
     public void characters(char[] ch, int start, int lenght) {
 
         String s = new String(ch, start, lenght).trim();
 
         if (currentEnum != null) {
-            switch (currentEnum) {
-                case NAME:
-                    currentEmployee.setName(s);
-                    break;
-                case SURNAME:
-                    currentEmployee.setSurname(s);
-                    break;
-                case SALARYPERHOUR:
-                    currentEmployee.setSalaryPerHour(Double.parseDouble(s));
-                    break;
-                    default:
-                        if (currentEmployee instanceof Developer) {
+            if (currentEnum == ITCompanyEnum.NAME) {
+                currentEmployee.setName(s);
 
-                            Developer developer = (Developer) currentEmployee;
+            } else if (currentEnum == ITCompanyEnum.SURNAME) {
+                currentEmployee.setSurname(s);
 
-                            switch (currentEnum) {
-                                case LEVEL:
-                                    developer.setLevel(Engineer.EngineerLevelType.valueOf(s));
-                                    break;
-                                case DEVELOPERTYPE:
-                                    developer.setDeveloperType(Developer.DeveloperType.valueOf(s));
-                                    break;
-                                case SKILL:
-                                    developer.setSkill(s);
-                                    break;
-                            }
+            } else if (currentEnum == ITCompanyEnum.SALARYPERHOUR) {
+                currentEmployee.setSalaryPerHour(Double.parseDouble(s));
+            }
 
-                        } else  if (currentEmployee instanceof Tester) {
+            if (currentEmployee instanceof Engineer) {
+                Engineer engineer = (Engineer)currentEmployee;
+                if (currentEnum == ITCompanyEnum.LEVEL) {
+                    engineer.setLevel(Engineer.EngineerLevelType.valueOf(s));
+                }
+            }
 
-                            Tester tester = (Tester) currentEmployee;
-                            switch (currentEnum) {
-                                case LEVEL:
-                                    tester.setLevel(Engineer.EngineerLevelType.valueOf(s));
-                                    break;
-                                case TESTERTYPE:
-                                    tester.setTesterType(Tester.TesterType.valueOf(s));
-                                    break;
-                            }
+            if (currentEmployee instanceof Developer) {
+                Developer developer = (Developer)currentEmployee;
+                if (currentEnum == ITCompanyEnum.DEVELOPERTYPE) {
+                    developer.setDeveloperType(Developer.DeveloperType.valueOf(s));
+                } else if (currentEnum == ITCompanyEnum.SKILL) {
+                    developer.setSkill(s);
+                }
+            }
 
-                        } else if (currentEmployee instanceof ProjectManager) {
-                            ProjectManager projectManager = (ProjectManager) currentEmployee;
-                            projectManager.setProject(s);
-                        }
+            if (currentEmployee instanceof Tester) {
+                Tester tester = (Tester) currentEmployee;
+                if (currentEnum == ITCompanyEnum.TESTERTYPE) {
+                    tester.setTesterType(Tester.TesterType.valueOf(s));
+                }
+            }
+
+            if (currentEmployee instanceof ProjectManager) {
+                ProjectManager projectManager = (ProjectManager) currentEmployee;
+                if (currentEnum == ITCompanyEnum.PROJECT) {
+                    projectManager.setProject(s);
+                }
             }
         }
-        currentEmployee = null;
+        currentEnum = null;
     }
-
 }

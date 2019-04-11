@@ -12,12 +12,12 @@ public class ITCompanySAXBuilder extends AbstractITCompanyBuilder {
 
     private static final Logger LOGGER;
 
+    private ITCompanyHandler itCompanyHandler;
+    private XMLReader xmlReader;
+
     static {
         LOGGER = Logger.getRootLogger();
     }
-
-    private ITCompanyHandler itCompanyHandler;
-    private XMLReader xmlReader;
 
     public ITCompanySAXBuilder() {
         itCompanyHandler = new ITCompanyHandler();
@@ -38,5 +38,6 @@ public class ITCompanySAXBuilder extends AbstractITCompanyBuilder {
         } catch (SAXException e) {
             LOGGER.error("SAX parser error: " + e);
         }
+        itCompany = itCompanyHandler.getItCompany();
     }
 }

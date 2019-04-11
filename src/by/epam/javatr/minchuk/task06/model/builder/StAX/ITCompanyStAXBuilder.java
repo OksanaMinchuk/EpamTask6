@@ -116,11 +116,13 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
                                } else if (name == ITCompanyEnum.SKILL.getValue()) {
                                    developer.setSkill(getXMLText(reader));
                                }
+
                            } else if (employee instanceof Tester) {
                                Tester tester = (Tester) employee;
                                if (name == ITCompanyEnum.TESTERTYPE.getValue()) {
                                    tester.setTesterType(Tester.TesterType.valueOf(getXMLText(reader)));
                                }
+
                            } else if (employee instanceof ProjectManager) {
                                ProjectManager projectManager = (ProjectManager) employee;
                                if (name == ITCompanyEnum.PROJECT.getValue()) {

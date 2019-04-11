@@ -1,6 +1,7 @@
-package by.epam.javatr.minchuk.task06.util;
+package by.epam.javatr.minchuk.task06.util.validator;
 
 import by.epam.javatr.minchuk.task06.model.exception.XMLParserErrorHandler;
+import by.epam.javatr.minchuk.task06.util.constant.ProjectConstant;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
@@ -23,12 +24,7 @@ import java.io.IOException;
 public class ValidatorSAXXSD {
 
     private static final Logger LOGGER;
-    private static final String XML_FILE_PATH = "src" + File.separator + "resources" + File.separator + "input"
-            + File.separator + "itcompany.xml";
-    private static final String XSD_FILE_PATH = "src" + File.separator + "resources" + File.separator + "input"
-            + File.separator + "itcompanySchema.xsd";
     private static final String LANGUAGE = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-    private static final String LOGNAME = "validatorLog.log";
 
     static {
         LOGGER = Logger.getRootLogger();
@@ -36,21 +32,21 @@ public class ValidatorSAXXSD {
 
     public static void validateScheme() {
         SchemaFactory factory  = SchemaFactory.newInstance(LANGUAGE);
-        File shemaLocation = new File(XSD_FILE_PATH);
+        File shemaLocation = new File(ProjectConstant.XSD_FILE_PATH);
         try {
             Schema schema = factory.newSchema(shemaLocation);
             Validator validator = schema.newValidator();
-            Source source = new StreamSource(XML_FILE_PATH);
+            Source source = new StreamSource(ProjectConstant.XML_FILE_PATH);
 
-            XMLParserErrorHandler xmlParserErrorHandler = new XMLParserErrorHandler(LOGNAME);
+            XMLParserErrorHandler xmlParserErrorHandler = new XMLParserErrorHandler();
             validator.setErrorHandler(xmlParserErrorHandler);
 
             validator.validate(source);
-            LOGGER.info(XML_FILE_PATH + " is valid.");
+            LOGGER.info(ProjectConstant.XML_FILE_PATH + " is valid.");
         } catch (SAXException e) {
-            LOGGER.error(XML_FILE_PATH + " is not valid because " + e.getMessage());
+            LOGGER.error(ProjectConstant.XML_FILE_PATH + " is not valid because " + e.getMessage());
         } catch (IOException e) {
-            LOGGER.error(XML_FILE_PATH + " is not valid because " + e.getMessage());
+            LOGGER.error(ProjectConstant.XML_FILE_PATH + " is not valid because " + e.getMessage());
         }
 
     }
