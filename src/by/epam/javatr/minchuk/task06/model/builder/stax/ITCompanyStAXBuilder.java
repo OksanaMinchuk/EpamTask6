@@ -1,7 +1,8 @@
-package by.epam.javatr.minchuk.task06.model.builder.StAX;
+package by.epam.javatr.minchuk.task06.model.builder.stax;
 
 import by.epam.javatr.minchuk.task06.model.builder.AbstractITCompanyBuilder;
 import by.epam.javatr.minchuk.task06.model.builder.ITCompanyEnum;
+import by.epam.javatr.minchuk.task06.model.builder.dom.ITCompanyDOMBuilder;
 import by.epam.javatr.minchuk.task06.model.entity.*;
 import org.apache.log4j.Logger;
 
@@ -14,21 +15,36 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.EnumSet;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
 
     private static final Logger LOGGER;
-
-    static {
-        LOGGER = Logger.getRootLogger();
-    }
+    private static final ReentrantLock LOCK;
+    private static ITCompanyStAXBuilder uniqueInstance;
 
     private XMLInputFactory inputFactory;
     private EnumSet<ITCompanyEnum> employeeTypes;
 
-    public ITCompanyStAXBuilder() {
+    static {
+        LOGGER = Logger.getRootLogger();
+        LOCK = new ReentrantLock();
+    }
+
+    private ITCompanyStAXBuilder() {
         inputFactory = XMLInputFactory.newInstance();
         employeeTypes = EnumSet.range(ITCompanyEnum.DEVELOPER, ITCompanyEnum.PROJECTMANAGER);
+    }
+
+    public static ITCompanyStAXBuilder getUniqueInstance() {
+        if (uniqueInstance == null) {
+            LOCK.lock();
+            if (uniqueInstance == null) {
+                uniqueInstance = new ITCompanyStAXBuilder();
+            }
+            LOCK.lock();
+        }
+        return uniqueInstance;
     }
 
     @Override
@@ -40,7 +56,7 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
         try {
             fileInputStream = new FileInputStream(new File(filename));
             reader = inputFactory.createXMLStreamReader(fileInputStream);
-            //StAX parsing
+            //stax parsing
             while (reader.hasNext()) {
                 int type = reader.next();
 
@@ -54,7 +70,7 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
                 }
             }
         } catch (XMLStreamException e) {
-            LOGGER.error("StAX parsing error!" + e.getMessage());
+            LOGGER.error("stax parsing error!" + e.getMessage());
         } catch (FileNotFoundException e) {
             LOGGER.error("File " + filename + " not found! " + e.getMessage());
         } finally {
@@ -72,13 +88,13 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
 
         Employee employee = null;
 
-        if (reader.getLocalName() == ITCompanyEnum.DEVELOPER.getValue()) {
+        if (reader.getLocalName().equalsIgnoreCase(ITCompanyEnum.DEVELOPER.getValue())) {
             employee = new Developer();
 
-        } else if (reader.getLocalName() == ITCompanyEnum.TESTER.getValue()){
+        } else if (reader.getLocalName().equalsIgnoreCase(ITCompanyEnum.TESTER.getValue())){
             employee = new Tester();
 
-        } else if (reader.getLocalName() == ITCompanyEnum.PROJECTMANAGER.getValue()) {
+        } else if (reader.getLocalName().equalsIgnoreCase(ITCompanyEnum.PROJECTMANAGER.getValue())) {
             employee = new ProjectManager();
         }
 
@@ -107,25 +123,25 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
                        default:
                            if (employee instanceof Developer) {
                                Developer developer = (Developer) employee;
-                               if (name == ITCompanyEnum.LEVEL.getValue()) {
+                               if (name.equalsIgnoreCase(ITCompanyEnum.LEVEL.getValue())) {
                                    developer.setLevel(Engineer.EngineerLevelType.valueOf(getXMLText(reader)));
 
-                               } else if (name == ITCompanyEnum.DEVELOPERTYPE.getValue()) {
+                               } else if (name.equalsIgnoreCase(ITCompanyEnum.DEVELOPERTYPE.getValue())) {
                                    developer.setDeveloperType(Developer.DeveloperType.valueOf(getXMLText(reader)));
 
-                               } else if (name == ITCompanyEnum.SKILL.getValue()) {
+                               } else if (name.equalsIgnoreCase(ITCompanyEnum.SKILL.getValue())) {
                                    developer.setSkill(getXMLText(reader));
                                }
 
                            } else if (employee instanceof Tester) {
                                Tester tester = (Tester) employee;
-                               if (name == ITCompanyEnum.TESTERTYPE.getValue()) {
+                               if (name.equalsIgnoreCase(ITCompanyEnum.TESTERTYPE.getValue())) {
                                    tester.setTesterType(Tester.TesterType.valueOf(getXMLText(reader)));
                                }
 
                            } else if (employee instanceof ProjectManager) {
                                ProjectManager projectManager = (ProjectManager) employee;
-                               if (name == ITCompanyEnum.PROJECT.getValue()) {
+                               if (name.equalsIgnoreCase(ITCompanyEnum.PROJECT.getValue())) {
                                    projectManager.setProject(getXMLText(reader));
                                }
                            }

@@ -1,4 +1,4 @@
-package by.epam.javatr.minchuk.task06.model.builder.SAX;
+package by.epam.javatr.minchuk.task06.model.builder.sax;
 
 import by.epam.javatr.minchuk.task06.model.builder.ITCompanyEnum;
 import by.epam.javatr.minchuk.task06.model.entity.*;

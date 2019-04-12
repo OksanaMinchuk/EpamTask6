@@ -1,8 +1,8 @@
 package by.epam.javatr.minchuk.task06.model.builder;
 
-import by.epam.javatr.minchuk.task06.model.builder.DOM.ITCompanyDOMBuilder;
-import by.epam.javatr.minchuk.task06.model.builder.SAX.ITCompanySAXBuilder;
-import by.epam.javatr.minchuk.task06.model.builder.StAX.ITCompanyStAXBuilder;
+import by.epam.javatr.minchuk.task06.model.builder.dom.ITCompanyDOMBuilder;
+import by.epam.javatr.minchuk.task06.model.builder.sax.ITCompanySAXBuilder;
+import by.epam.javatr.minchuk.task06.model.builder.stax.ITCompanyStAXBuilder;
 
 public class ITCompanyFactoryBuilder {
 
@@ -15,11 +15,11 @@ public class ITCompanyFactoryBuilder {
         TypeParser type = TypeParser.valueOf(typeParser.toUpperCase());
         switch (type) {
             case DOM:
-                abstractITCompanyBuilder = new ITCompanyDOMBuilder(); break;
+                abstractITCompanyBuilder = ITCompanyDOMBuilder.getUniqueInstance(); break;
             case SAX:
-                abstractITCompanyBuilder = new ITCompanySAXBuilder(); break;
+                abstractITCompanyBuilder = ITCompanySAXBuilder.getUniqueInstance(); break;
             case STAX:
-                abstractITCompanyBuilder = new ITCompanyStAXBuilder(); break;
+                abstractITCompanyBuilder = ITCompanyStAXBuilder.getUniqueInstance(); break;
         }
         return abstractITCompanyBuilder;
     }

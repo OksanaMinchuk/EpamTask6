@@ -1,4 +1,4 @@
-package by.epam.javatr.minchuk.task06.model.builder.DOM;
+package by.epam.javatr.minchuk.task06.model.builder.dom;
 
 import by.epam.javatr.minchuk.task06.model.builder.AbstractITCompanyBuilder;
 import by.epam.javatr.minchuk.task06.model.builder.ITCompanyEnum;
@@ -14,18 +14,22 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ITCompanyDOMBuilder extends AbstractITCompanyBuilder {
 
     private static final Logger LOGGER;
-
-    static {
-        LOGGER = Logger.getRootLogger();
-    }
+    private static final ReentrantLock LOCK;
+    private static ITCompanyDOMBuilder uniqueInstance;
 
     private DocumentBuilder documentBuilder;
 
-    public ITCompanyDOMBuilder() {
+    static {
+        LOGGER = Logger.getRootLogger();
+        LOCK = new ReentrantLock();
+    }
+
+    private ITCompanyDOMBuilder() {
         this.itCompany = new ITCompany();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
@@ -33,6 +37,17 @@ public class ITCompanyDOMBuilder extends AbstractITCompanyBuilder {
         } catch (ParserConfigurationException e) {
             LOGGER.error("Parser configuration error: " + e);
         }
+    }
+
+    public static ITCompanyDOMBuilder getUniqueInstance() {
+        if (uniqueInstance == null) {
+            LOCK.lock();
+            if (uniqueInstance == null) {
+                uniqueInstance = new ITCompanyDOMBuilder();
+            }
+            LOCK.lock();
+        }
+        return uniqueInstance;
     }
 
     @Override
