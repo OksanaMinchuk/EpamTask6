@@ -26,7 +26,7 @@ public class Developer extends Engineer {
         }
     }
 
-    public Developer(String id, String name, String surname, int salaryPerHour, String username, EngineerLevelType levelType,
+    public Developer(String id, String name, String surname, double salaryPerHour, String username, EngineerLevelType levelType,
                      DeveloperType developerType, String skill) {
         super(id, name, surname, salaryPerHour, username, levelType);
         if (developerType != null && skill != "") {

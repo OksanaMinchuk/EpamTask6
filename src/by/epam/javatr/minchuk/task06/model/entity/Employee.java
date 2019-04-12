@@ -24,7 +24,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String id, String name, String surname, int salaryPerHour, String username) {
+    public Employee(String id, String name, String surname, double salaryPerHour, String username) {
         if (name != ""  && surname != "" && salaryPerHour > 0) {
             this.id = id;
             this.name = name;
