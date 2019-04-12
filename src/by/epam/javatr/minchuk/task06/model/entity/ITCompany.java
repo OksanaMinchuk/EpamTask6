@@ -2,6 +2,7 @@ package by.epam.javatr.minchuk.task06.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class {@code ITCompany}
@@ -32,6 +33,19 @@ public class ITCompany {
 
     public boolean removeEmployee(Employee employee) {
         return employees.remove(employee);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ITCompany itCompany = (ITCompany) o;
+        return employees.equals(itCompany.employees);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(employees);
     }
 
     @Override
