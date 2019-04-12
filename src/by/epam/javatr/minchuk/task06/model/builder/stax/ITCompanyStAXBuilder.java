@@ -2,7 +2,6 @@ package by.epam.javatr.minchuk.task06.model.builder.stax;
 
 import by.epam.javatr.minchuk.task06.model.builder.AbstractITCompanyBuilder;
 import by.epam.javatr.minchuk.task06.model.builder.ITCompanyEnum;
-import by.epam.javatr.minchuk.task06.model.builder.dom.ITCompanyDOMBuilder;
 import by.epam.javatr.minchuk.task06.model.entity.*;
 import org.apache.log4j.Logger;
 
@@ -121,6 +120,7 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
                            employee.setSalaryPerHour(Double.parseDouble(getXMLText(reader)));
                            break;
                        default:
+
                            if (employee instanceof Developer) {
                                Developer developer = (Developer) employee;
                                if (name.equalsIgnoreCase(ITCompanyEnum.LEVEL.getValue())) {
@@ -135,7 +135,10 @@ public class ITCompanyStAXBuilder extends AbstractITCompanyBuilder {
 
                            } else if (employee instanceof Tester) {
                                Tester tester = (Tester) employee;
-                               if (name.equalsIgnoreCase(ITCompanyEnum.TESTERTYPE.getValue())) {
+                               if (name.equalsIgnoreCase(ITCompanyEnum.LEVEL.getValue())) {
+                                   tester.setLevel(Engineer.EngineerLevelType.valueOf(getXMLText(reader)));
+
+                               } else if (name.equalsIgnoreCase(ITCompanyEnum.TESTERTYPE.getValue())) {
                                    tester.setTesterType(Tester.TesterType.valueOf(getXMLText(reader)));
                                }
 
