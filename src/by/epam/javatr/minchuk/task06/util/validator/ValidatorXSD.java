@@ -42,7 +42,7 @@ public class ValidatorXSD {
             parser.parse(ProjectConstant.XML_FILE_PATH, new XMLParserErrorHandler());
             LOGGER.info(ProjectConstant.XML_FILE_PATH + " is valid");
         } catch (SAXException e) {
-            LOGGER.error(ProjectConstant.XML_FILE_PATH + " SAX error: " + e.getMessage());
+            LOGGER.error(ProjectConstant.XML_FILE_PATH + " sax error: " + e.getMessage());
         } catch (ParserConfigurationException e) {
             LOGGER.error(ProjectConstant.XML_FILE_PATH + " config error: " + e.getMessage());
         } catch (IOException e) {

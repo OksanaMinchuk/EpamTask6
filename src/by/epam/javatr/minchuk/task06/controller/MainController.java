@@ -33,8 +33,8 @@ public class MainController {
         //ValidatorXSD.validateScheme();
         ValidatorSAXXSD.validateScheme();
 
-        //DOM Parsing
-        LOGGER.trace("DOM Parsing");
+        //dom Parsing
+        LOGGER.trace("dom Parsing");
         AbstractITCompanyBuilder builderDOM = new ITCompanyFactoryBuilder().
                 createITCompanyBuilder(ITCompanyFactoryBuilder.TypeParser.DOM.toString());
         builderDOM.createITCompany(ProjectConstant.XML_FILE_PATH);
@@ -49,14 +49,13 @@ public class MainController {
         itCompany = builderSTAX.getItCompany();
         LOGGER.info(itCompany);
 
-        //SAX Parsing
-        LOGGER.trace("SAX Parsing");
+        //sax Parsing
+        LOGGER.trace("sax Parsing");
         AbstractITCompanyBuilder builderSAX = new ITCompanyFactoryBuilder().
                 createITCompanyBuilder(ITCompanyFactoryBuilder.TypeParser.SAX.toString());
         builderSAX.createITCompany(ProjectConstant.XML_FILE_PATH);
         itCompany = builderSAX.getItCompany();
         LOGGER.info(itCompany);
-
 
         //sorting
         try {
@@ -65,6 +64,5 @@ public class MainController {
         } catch (XMLProjectException e) {
             e.printStackTrace();
         }
-
     }
 }

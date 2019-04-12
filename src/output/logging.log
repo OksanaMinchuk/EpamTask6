@@ -1,6 +1,6 @@
-2019-04-11 21:36:23 INFO  root:45 - src/resources/input/itcompany.xml is valid.
-2019-04-11 21:36:23 TRACE root:37 - DOM Parsing
-2019-04-11 21:36:23 INFO  root:42 - 	ITCompany
+2019-04-12 12:02:51 INFO  root:45 - src/resources/input/itcompany.xml is valid.
+2019-04-12 12:02:51 TRACE root:37 - dom Parsing
+2019-04-12 12:02:51 INFO  root:42 - 	ITCompany
 Developer { id= id1, name='John', surname='Conor', salaryPerHour=50.0, username='conor', level=MIDDLE, developerType=BACK_END, skill='Java'}
 Developer { id= id2, name='Donald', surname='Freeman', salaryPerHour=45.5, username='freeman', level=MIDDLE, developerType=BACK_END, skill='C++'}
 Developer { id= id3, name='Jack', surname='Gilbert', salaryPerHour=54.5, username='gilbert', level=SENIOR, developerType=FRONT_END, skill='HTML'}
@@ -8,17 +8,8 @@ Tester { id= id4, name='Alex', surname='Miller', salaryPerHour=30.0, username='m
 Tester { id= id5, name='Tom', surname='Gibbs', salaryPerHour=24.7, username='gibbs', level=JUNIOR, testerType=AUTOMATION}
 ProjectManager { id= id6, name='Scott', surname='Johnson', salaryPerHour=60.0, username='johnson', project='Online-Store'}
 
-2019-04-11 21:36:23 TRACE root:45 - STAX Parsing
-2019-04-11 21:36:23 INFO  root:50 - 	ITCompany
-Developer { id= id1, name='John', surname='Conor', salaryPerHour=50.0, username='conor', level=MIDDLE, developerType=BACK_END, skill='Java'}
-Developer { id= id2, name='Donald', surname='Freeman', salaryPerHour=45.5, username='freeman', level=MIDDLE, developerType=BACK_END, skill='C++'}
-Developer { id= id3, name='Jack', surname='Gilbert', salaryPerHour=54.5, username='gilbert', level=SENIOR, developerType=FRONT_END, skill='HTML'}
-Tester { id= id4, name='Alex', surname='Miller', salaryPerHour=30.0, username='miller', level=null, testerType=MANUAL}
-Tester { id= id5, name='Tom', surname='Gibbs', salaryPerHour=24.7, username='gibbs', level=null, testerType=AUTOMATION}
-ProjectManager { id= id6, name='Scott', surname='Johnson', salaryPerHour=60.0, username='johnson', project='Online-Store'}
-
-2019-04-11 21:36:23 TRACE root:53 - SAX Parsing
-2019-04-11 21:36:23 INFO  root:58 - 	ITCompany
+2019-04-12 12:02:51 TRACE root:45 - STAX Parsing
+2019-04-12 12:02:51 INFO  root:50 - 	ITCompany
 Developer { id= id1, name='John', surname='Conor', salaryPerHour=50.0, username='conor', level=MIDDLE, developerType=BACK_END, skill='Java'}
 Developer { id= id2, name='Donald', surname='Freeman', salaryPerHour=45.5, username='freeman', level=MIDDLE, developerType=BACK_END, skill='C++'}
 Developer { id= id3, name='Jack', surname='Gilbert', salaryPerHour=54.5, username='gilbert', level=SENIOR, developerType=FRONT_END, skill='HTML'}
@@ -26,8 +17,17 @@ Tester { id= id4, name='Alex', surname='Miller', salaryPerHour=30.0, username='m
 Tester { id= id5, name='Tom', surname='Gibbs', salaryPerHour=24.7, username='gibbs', level=JUNIOR, testerType=AUTOMATION}
 ProjectManager { id= id6, name='Scott', surname='Johnson', salaryPerHour=60.0, username='johnson', project='Online-Store'}
 
-2019-04-11 21:36:23 INFO  root:34 - sorting by salary is successful
-2019-04-11 21:36:23 INFO  root:64 - 	ITCompany
+2019-04-12 12:02:51 TRACE root:53 - sax Parsing
+2019-04-12 12:02:51 INFO  root:58 - 	ITCompany
+Developer { id= id1, name='John', surname='Conor', salaryPerHour=50.0, username='conor', level=MIDDLE, developerType=BACK_END, skill='Java'}
+Developer { id= id2, name='Donald', surname='Freeman', salaryPerHour=45.5, username='freeman', level=MIDDLE, developerType=BACK_END, skill='C++'}
+Developer { id= id3, name='Jack', surname='Gilbert', salaryPerHour=54.5, username='gilbert', level=SENIOR, developerType=FRONT_END, skill='HTML'}
+Tester { id= id4, name='Alex', surname='Miller', salaryPerHour=30.0, username='miller', level=MIDDLE, testerType=MANUAL}
+Tester { id= id5, name='Tom', surname='Gibbs', salaryPerHour=24.7, username='gibbs', level=JUNIOR, testerType=AUTOMATION}
+ProjectManager { id= id6, name='Scott', surname='Johnson', salaryPerHour=60.0, username='johnson', project='Online-Store'}
+
+2019-04-12 12:02:51 INFO  root:34 - sorting by salary is successful
+2019-04-12 12:02:51 INFO  root:63 - 	ITCompany
 Tester { id= id5, name='Tom', surname='Gibbs', salaryPerHour=24.7, username='gibbs', level=JUNIOR, testerType=AUTOMATION}
 Tester { id= id4, name='Alex', surname='Miller', salaryPerHour=30.0, username='miller', level=MIDDLE, testerType=MANUAL}
 Developer { id= id2, name='Donald', surname='Freeman', salaryPerHour=45.5, username='freeman', level=MIDDLE, developerType=BACK_END, skill='C++'}
