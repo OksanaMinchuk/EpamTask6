@@ -7,7 +7,6 @@ import by.epam.javatr.minchuk.task06.model.exception.XMLProjectException;
 import by.epam.javatr.minchuk.task06.model.logic.Sorter;
 import by.epam.javatr.minchuk.task06.util.validator.ValidatorSAXXSD;
 import by.epam.javatr.minchuk.task06.util.constant.ProjectConstant;
-import by.epam.javatr.minchuk.task06.util.validator.ValidatorXSD;
 import org.apache.log4j.Logger;
 
 /**
@@ -34,14 +33,14 @@ public class MainController {
         ValidatorSAXXSD.validateScheme();
 
         //dom Parsing
-        LOGGER.trace("dom Parsing");
+        LOGGER.trace("DOM Parsing");
         AbstractITCompanyBuilder builderDOM = new ITCompanyFactoryBuilder().
                 createITCompanyBuilder(ITCompanyFactoryBuilder.TypeParser.DOM.toString());
         builderDOM.createITCompany(ProjectConstant.XML_FILE_PATH);
         itCompany = builderDOM.getItCompany();
         LOGGER.info(itCompany);
 
-        //STAX Parsing
+        //StAX Parsing
         LOGGER.trace("STAX Parsing");
         AbstractITCompanyBuilder builderSTAX = new ITCompanyFactoryBuilder().
                 createITCompanyBuilder(ITCompanyFactoryBuilder.TypeParser.STAX.toString());
@@ -50,7 +49,7 @@ public class MainController {
         LOGGER.info(itCompany);
 
         //sax Parsing
-        LOGGER.trace("sax Parsing");
+        LOGGER.trace("SAX Parsing");
         AbstractITCompanyBuilder builderSAX = new ITCompanyFactoryBuilder().
                 createITCompanyBuilder(ITCompanyFactoryBuilder.TypeParser.SAX.toString());
         builderSAX.createITCompany(ProjectConstant.XML_FILE_PATH);

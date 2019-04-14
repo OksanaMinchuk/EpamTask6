@@ -1,6 +1,6 @@
 package by.epam.javatr.minchuk.task06.model.builder.sax;
 
-import by.epam.javatr.minchuk.task06.model.builder.ITCompanyData;
+import by.epam.javatr.minchuk.task06.model.ITCompanyData;
 import by.epam.javatr.minchuk.task06.model.entity.ITCompany;
 import by.epam.javatr.minchuk.task06.util.constant.ProjectConstant;
 import org.junit.After;
@@ -15,6 +15,7 @@ public class ITCompanySAXBuilderTest {
     @Before
     public void setUp() {
         saxBuilder = ITCompanySAXBuilder.getUniqueInstance();
+        saxBuilder.createITCompany(ProjectConstant.XML_FILE_PATH);
     }
 
     @After
@@ -25,7 +26,6 @@ public class ITCompanySAXBuilderTest {
     @Test
     public void testCreateITCompany() {
         ITCompany expected = ITCompanyData.initITCompany();
-        saxBuilder.createITCompany(ProjectConstant.XML_FILE_PATH);
         ITCompany actual =  saxBuilder.getItCompany();
         Assert.assertEquals(expected, actual);
     }

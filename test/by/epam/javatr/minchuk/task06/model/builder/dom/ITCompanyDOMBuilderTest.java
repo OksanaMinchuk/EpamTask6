@@ -1,14 +1,12 @@
 package by.epam.javatr.minchuk.task06.model.builder.dom;
 
-import by.epam.javatr.minchuk.task06.model.builder.ITCompanyData;
+import by.epam.javatr.minchuk.task06.model.ITCompanyData;
 import by.epam.javatr.minchuk.task06.model.entity.ITCompany;
 import by.epam.javatr.minchuk.task06.util.constant.ProjectConstant;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 public class ITCompanyDOMBuilderTest {
 
@@ -17,6 +15,7 @@ public class ITCompanyDOMBuilderTest {
     @Before
     public void setUp() {
         domBuilder = ITCompanyDOMBuilder.getUniqueInstance();
+        domBuilder.createITCompany(ProjectConstant.XML_FILE_PATH);
     }
 
     @After
@@ -27,7 +26,6 @@ public class ITCompanyDOMBuilderTest {
     @Test
     public void testCreateITCompany() {
         ITCompany expected = ITCompanyData.initITCompany();
-        domBuilder.createITCompany(ProjectConstant.XML_FILE_PATH);
         ITCompany actual =  domBuilder.getItCompany();
         Assert.assertEquals(expected, actual);
     }

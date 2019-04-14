@@ -1,4 +1,4 @@
-package by.epam.javatr.minchuk.task06.model.builder;
+package by.epam.javatr.minchuk.task06.model;
 
 import by.epam.javatr.minchuk.task06.model.entity.*;
 

@@ -1,6 +1,6 @@
 package by.epam.javatr.minchuk.task06.model.builder.stax;
 
-import by.epam.javatr.minchuk.task06.model.builder.ITCompanyData;
+import by.epam.javatr.minchuk.task06.model.ITCompanyData;
 import by.epam.javatr.minchuk.task06.model.entity.ITCompany;
 import by.epam.javatr.minchuk.task06.util.constant.ProjectConstant;
 import org.junit.After;
@@ -15,6 +15,7 @@ public class ITCompanyStAXBuilderTest {
     @Before
     public void setUp() {
         stAXBuilder = ITCompanyStAXBuilder.getUniqueInstance();
+        stAXBuilder.createITCompany(ProjectConstant.XML_FILE_PATH);
     }
 
     @After
@@ -25,7 +26,6 @@ public class ITCompanyStAXBuilderTest {
     @Test
     public void testCreateITCompany() {
         ITCompany expected = ITCompanyData.initITCompany();
-        stAXBuilder.createITCompany(ProjectConstant.XML_FILE_PATH);
         ITCompany actual =  stAXBuilder.getItCompany();
         Assert.assertEquals(expected, actual);
     }
